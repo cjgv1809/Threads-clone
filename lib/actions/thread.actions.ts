@@ -13,6 +13,13 @@ type Params = {
   path: string;
 };
 
+type CommentParams = {
+  threadId: string;
+  commentText: string;
+  userId: string;
+  path: string;
+};
+
 export async function fetchThreads(pageNumber = 1, pageSize = 20) {
   connectToDB();
 
@@ -202,12 +209,12 @@ export async function fetchThreadById(threadId: string) {
   }
 }
 
-export async function addCommentToThread(
-  threadId: string,
-  commentText: string,
-  userId: string,
-  path: string
-) {
+export async function addCommentToThread({
+  threadId,
+  commentText,
+  userId,
+  path,
+}: CommentParams) {
   connectToDB();
 
   try {
